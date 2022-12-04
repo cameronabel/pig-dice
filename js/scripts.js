@@ -4,14 +4,15 @@ function rollDie () {
 }
 
 class Player{
-  constructor() {
+  constructor(name) {
+    this.name = name;
     this.score = 0;
     this.currentTurn = [];
   }
 
   takeTurn() {
     let roll = rollDie();
-    console.log(roll);
+    
     if (roll === 1) {
       this.currentTurn = [];
     } else {
@@ -21,14 +22,16 @@ class Player{
   }
 
   hold() {
-    this.score += this.currentTurn.reduce((a, b) => a + b);
+    if (this.currentTurn) {
+      this.score += this.currentTurn.reduce((a, b) => a + b);
+    }
     this.currentTurn = [];
   }
 }
 
 class Game {
   constructor() {
-    this.players = [new Player(), new Player()];
+    this.players = [new Player('Player 1'), new Player('Player 2')];
     this.activePlayerIndex = 0;
   }
   swapPlayer() {
@@ -40,37 +43,35 @@ class Game {
   }
 }
 
-
-function pigDice() {
-  
-  let activePlayer = game.activePlayer();
-
-}
-  
-
-
 // Interface Logic
 const game = new Game();
 
 function rollButtonHandler() {
   event.preventDefault();
   let roll = game.activePlayer().takeTurn();
+ 
+  // if roll was 1, call another func to swap players
+  
+  console.log(game.activePlayer().name);
+  console.log(roll);
+  console.log(game.activePlayer().score); // update score display
+  console.log(game.activePlayer().currentTurn); // update current roll display
   if (roll === 1) {
     game.swapPlayer();
   }
-  // if roll was 1, call another func to swap players
-  console.log(game.activePlayer().score); // update score display
-  console.log(game.activePlayer().currentTurn); // update current roll display
 }
 
-function holdButtonHandler(event) {
+function holdButtonHandler() {
   event.preventDefault();
   game.activePlayer().hold();
+  if (game.activePlayer().score >= 100) {
+    return // Game over
+  } else {
   game.swapPlayer();
+  }
   // swap the display to the other player
   // check for 100 pts
 }
-
 
 window.onload = function () {
   const rollButton = document.getElementById('roll');
@@ -78,6 +79,5 @@ window.onload = function () {
 
   const holdButton = document.getElementById('hold');
   holdButton.addEventListener("submit", holdButtonHandler);
-
-  pigDice();
 }
+
