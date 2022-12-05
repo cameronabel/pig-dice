@@ -46,18 +46,39 @@ class Game {
 // Interface Logic
 const game = new Game();
 
+function updateDisplay() {
+  const rollArea = document.getElementById('show-roll');
+  rollArea.innerHTML = '';
+  const p = document.createElement('p');
+  const lastRoll = game.activePlayer().currentTurn.slice(-1)[0] || 1;
+  p.append(`${game.activePlayer().name} rolled a ${lastRoll}`);
+  rollArea.append(p);
+}
+
+function displayStreak() {
+  const streakArea = document.getElementById('streak');
+  streakArea.innerHTML = '';
+  //const ul = document.createElement('ul');
+  game.activePlayer().currentTurn.forEach( function(element) {
+    //const li = document.createElement('li');
+    //li.append(element);
+    //ul.append(li);
+    streakArea.innerText += `${element}\n`;
+  });
+  //streakArea.append(ul);
+}
+
+
 function rollButtonHandler() {
   event.preventDefault();
   let roll = game.activePlayer().takeTurn();
- 
+  updateDisplay()
+  displayStreak()
   // if roll was 1, call another func to swap players
-  
-  console.log(game.activePlayer().name);
-  console.log(roll);
-  console.log(game.activePlayer().score); // update score display
-  console.log(game.activePlayer().currentTurn); // update current roll display
   if (roll === 1) {
+    
     game.swapPlayer();
+    // swap display to other player
   }
 }
 
@@ -70,7 +91,7 @@ function holdButtonHandler() {
   game.swapPlayer();
   }
   // swap the display to the other player
-  // check for 100 pts
+  
 }
 
 window.onload = function () {

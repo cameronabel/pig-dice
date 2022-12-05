@@ -7,15 +7,33 @@
   <title>Pig Dice</title>
 </head>
 <body>
-  <form id="roll">
-    <label for="rollDie"></label>
-    <button type="submit">Roll</button>
-  </form>
-  <br>
-  <form id="hold">
-    <label for="holdDie"></label>
-    <button type="submit">Hold</button>
-  </form>
+  <div id="page">
+    <h1>Pig Dice</h1>
+    <div id="game-stats">
+      <div class="player-area" id="player1-score">
+      </div> <!-- end player1-score -->
+      <div id="roll-area">
+        <span id="show-roll">
+        </span>
+        <div id="buttons">
+          <form id="roll">
+            <label for="rollDie"></label>
+            <button type="submit">Roll</button>
+          </form>
+          <br>
+          <form id="hold">
+            <label for="holdDie"></label>
+            <button type="submit">Hold</button>
+          </form>
+        </div> <!-- end buttons -->
+      </div> <!-- end roll area -->
+      <div class="player-area" id="player2-score">
+      </div> <!-- end player2-score -->
+    </div> <!-- end game-stats -->
+    <h2>Roll Streak</h2>
+    <div id="streak">
+    </div><!-- end streak -->
+  </div> <!-- end page -->
 
 </body>
 </html>
