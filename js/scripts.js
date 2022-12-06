@@ -22,7 +22,7 @@ class Player{
   }
 
   hold() {
-    if (this.currentTurn) {
+    if (this.currentTurn.length) {
       this.score += this.currentTurn.reduce((a, b) => a + b);
     }
     this.currentTurn = [];
@@ -48,10 +48,9 @@ const game = new Game();
 
 function updateDisplay() {
   const rollArea = document.getElementById('show-roll');
-  const p = document.createElement('p');
   const lastRoll = game.activePlayer().currentTurn.slice(-1)[0] || 1;
-  p.append(`${game.activePlayer().name} rolled a ${lastRoll}`);
-  rollArea.append(p);
+  rollArea.innerText = `${game.activePlayer().name} rolled a ${lastRoll}`
+
 }
 
 function displayStreak() {
@@ -63,7 +62,7 @@ function displayStreak() {
 
 function clearDisplays() {
   const rollArea = document.getElementById('show-roll');
-  rollArea.innerHTML = '';
+  rollArea.innerText = ' ';
   const streakArea = document.getElementById('streak');
   streakArea.innerHTML = '';
 }
@@ -94,8 +93,8 @@ function holdButtonHandler() {
 
 function startPageHandler() {
   event.preventDefault();
-  const player1Name = document.getElementById('player1').value;
-  const player2Name = document.getElementById('player2').value;
+  const player1Name = document.getElementById('player1').value || 'Player 1';
+  const player2Name = document.getElementById('player2').value || 'Player 2';
   document.getElementById('start-page').classList.add('hidden');
   document.getElementById('game-play').classList.remove('hidden');
   game.players[0].name = player1Name;
