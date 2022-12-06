@@ -9,30 +9,51 @@
 <body>
   <div id="page">
     <h1>Pig Dice</h1>
-    <div id="game-stats">
-      <div class="player-area" id="player1-score">
-      </div> <!-- end player1-score -->
-      <div id="roll-area">
-        <span id="show-roll">
-        </span>
-        <div id="buttons">
-          <form id="roll">
-            <label for="rollDie"></label>
-            <button type="submit">Roll</button>
-          </form>
-          <br>
-          <form id="hold">
-            <label for="holdDie"></label>
-            <button type="submit">Hold</button>
-          </form>
-        </div> <!-- end buttons -->
-      </div> <!-- end roll area -->
-      <div class="player-area" id="player2-score">
-      </div> <!-- end player2-score -->
-    </div> <!-- end game-stats -->
-    <h2>Roll Streak</h2>
-    <div id="streak">
-    </div><!-- end streak -->
+    <div id="start-page">
+      <form id="game-setup">
+        <label for="p1-name">Player 1 Name:</label>
+        <input type="text" id="player1">
+        <br>
+        <br>
+        <label for="p2-name">Player 2 Name:</label>
+        <input type="text" id="player2">
+        <br>
+        <br>
+        <button type="submit" class="go-btn">Go!</button>
+      </form>
+    </div> <!-- end start page-->
+      <div id="game-play" class="hidden">
+        <div id="game-stats">
+          <div class="player-area" id="player1-score">
+            <span id="p1-name" class="names"></span>
+            <br>
+            <span id="score1" class="score"></span>
+          </div> <!-- end player1-score -->
+          <div id="roll-area">
+            <span id="show-roll">
+            </span>
+            <div id="buttons">
+              <form id="roll">
+                <label for="rollDie"></label>
+                <button type="submit">Roll</button>
+              </form>
+              <br>
+              <form id="hold">
+                <label for="holdDie"></label>
+                <button type="submit">Hold</button>
+              </form>
+            </div> <!-- end buttons -->
+          </div> <!-- end roll area -->
+          <div class="player-area" id="player2-score">
+            <span id="p2-name" class="names"></span>
+            <br>
+            <span id="score2" class="score"></span>
+          </div> <!-- end player2-score -->
+        </div> <!-- end game-stats -->
+        <h2>Roll Streak</h2>
+        <div id="streak">
+      </div><!-- end streak -->
+    </div> <!-- end gameplay -->  
   </div> <!-- end page -->
 
 </body>

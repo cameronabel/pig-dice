@@ -31,7 +31,7 @@ class Player{
 
 class Game {
   constructor() {
-    this.players = [new Player('Player 1'), new Player('Player 2')];
+    this.players = [new Player(''), new Player('')];
     this.activePlayerIndex = 0;
   }
   swapPlayer() {
@@ -48,7 +48,6 @@ const game = new Game();
 
 function updateDisplay() {
   const rollArea = document.getElementById('show-roll');
-  rollArea.innerHTML = '';
   const p = document.createElement('p');
   const lastRoll = game.activePlayer().currentTurn.slice(-1)[0] || 1;
   p.append(`${game.activePlayer().name} rolled a ${lastRoll}`);
@@ -57,41 +56,56 @@ function updateDisplay() {
 
 function displayStreak() {
   const streakArea = document.getElementById('streak');
-  streakArea.innerHTML = '';
-  //const ul = document.createElement('ul');
   game.activePlayer().currentTurn.forEach( function(element) {
-    //const li = document.createElement('li');
-    //li.append(element);
-    //ul.append(li);
     streakArea.innerText += `${element}\n`;
   });
-  //streakArea.append(ul);
 }
 
+function clearDisplays() {
+  const rollArea = document.getElementById('show-roll');
+  rollArea.innerHTML = '';
+  const streakArea = document.getElementById('streak');
+  streakArea.innerHTML = '';
+}
 
 function rollButtonHandler() {
   event.preventDefault();
   let roll = game.activePlayer().takeTurn();
-  updateDisplay()
-  displayStreak()
-  // if roll was 1, call another func to swap players
+  clearDisplays();
+  updateDisplay();
+  displayStreak();
   if (roll === 1) {
-    
     game.swapPlayer();
-    // swap display to other player
   }
 }
 
 function holdButtonHandler() {
   event.preventDefault();
   game.activePlayer().hold();
+  document.getElementById(game.activePlayer().scoreField).innerText= game.activePlayer().score;
+  clearDisplays();
   if (game.activePlayer().score >= 100) {
     return // Game over
   } else {
   game.swapPlayer();
   }
-  // swap the display to the other player
   
+}
+
+function startPageHandler() {
+  event.preventDefault();
+  const player1Name = document.getElementById('player1').value;
+  const player2Name = document.getElementById('player2').value;
+  document.getElementById('start-page').classList.add('hidden');
+  document.getElementById('game-play').classList.remove('hidden');
+  game.players[0].name = player1Name;
+  game.players[0].scoreField = 'score1';
+  game.players[1].scoreField = 'score2';
+  game.players[1].name = player2Name;
+  document.getElementById('p1-name').innerText= player1Name + "'s" + ' Score:';
+  document.getElementById('p2-name').innerText= player2Name + "'s" + ' Score:';
+  document.getElementById(game.players[0].scoreField).innerText= 0;
+  document.getElementById(game.players[1].scoreField).innerText= 0;
 }
 
 window.onload = function () {
@@ -100,5 +114,9 @@ window.onload = function () {
 
   const holdButton = document.getElementById('hold');
   holdButton.addEventListener("submit", holdButtonHandler);
+
+  const goButton = document.getElementById('game-setup');
+  goButton.addEventListener("submit", startPageHandler);
 }
+
 

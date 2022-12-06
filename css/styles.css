@@ -39,6 +39,7 @@ h1 {
   min-height: 100%;
   height: 100%;
   border: 2px solid black;
+  align-items: center;
 }
 
 #roll-area {
@@ -56,6 +57,7 @@ h1 {
   display: block;
   align-items: center;
   line-height: 10vh;
+  font-size: 2.5vw;
 }
 
 #buttons {
@@ -68,4 +70,30 @@ h1 {
 
 ul {
   list-style: none;
+}
+
+#player1-score {
+  border: 3px solid pink;
+}
+
+#player2-score {
+  border: 3px solid gold;
+}
+
+#score1 {
+  border: 3px solid blue;
+
+}
+
+.score {
+  top: 30%;
+  font-size: 8vw;
+  line-height: 200%;
+}
+
+.names {
+  border: 3px solid orange;
+  line-height: 150%;
+  font-weight: bold;
+  font-size: 3vw;
 }
