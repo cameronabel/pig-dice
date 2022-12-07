@@ -67,15 +67,6 @@ ul {
   list-style: none;
 }
 
-#player1-score {
-}
-
-#player2-score {
-}
-
-#score1 {
-}
-
 .score {
   top: 30%;
   font-size: 8vw;
@@ -86,4 +77,32 @@ ul {
   line-height: 150%;
   font-weight: bold;
   font-size: 3vw;
+}
+
+.highlighted {
+  border: 3px solid gold;
+}
+
+.not-highlighted {
+  border: 3px solid rgba(1, 1, 1, 0);
+}
+
+.spinner {
+  animation: scoreTwisting 1 3s linear;
+  font-size: 15vw;
+  font-weight: 700;
+}
+
+@keyframes scoreTwisting {
+  0% {
+    transform: rotateY(0);;
+  }
+  50%{
+    transform: rotateY(180deg);
+  }
+}
+
+.firework {
+  width: 30vw;
+  filter: invert(85%);
 }

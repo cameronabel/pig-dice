@@ -21,10 +21,11 @@
         <br>
         <button type="submit" class="go-btn">Go!</button>
       </form>
+      
     </div> <!-- end start page-->
       <div id="game-play" class="hidden">
         <div id="game-stats">
-          <div class="player-area" id="player1-score">
+          <div class="player-area not-highlighted" id="player1-score">
             <span id="p1-name" class="names"></span>
             <br>
             <span id="score1" class="score"></span>
@@ -44,7 +45,7 @@
               </form>
             </div> <!-- end buttons -->
           </div> <!-- end roll area -->
-          <div class="player-area" id="player2-score">
+          <div class="player-area not-highlighted" id="player2-score">
             <span id="p2-name" class="names"></span>
             <br>
             <span id="score2" class="score"></span>
@@ -54,6 +55,18 @@
         <div id="streak">
       </div><!-- end streak -->
     </div> <!-- end gameplay -->  
+    <div id="game-over" class="hidden">
+      <img src="img/firework.gif" class="firework">
+      <div id="final-score">
+      </div>
+      <div id="winner">
+      </div>
+      <br>
+      <button id="rematch">Rematch!</button>
+      <br>
+      <br>
+      <button id="new-game">New Game!</button>
+    </div> <!-- end game over--> 
   </div> <!-- end page -->
 
 </body>
